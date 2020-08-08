@@ -58,16 +58,20 @@ d3.json(link).then(data => {
   };
   //snap shot
   function buildsnapshot(selected_country_json) {
+    console.log(selected_country_json)
     var panel = d3.select('#sample-metadata');
     var ticker = '';
     panel.html("");
     selected_country_json.forEach(rec => {
+      console.log(rec)
+      // var FDI = `${rec[0][0]['series']}${rec[0][0]}`
       var series = rec[0]['series'];
+      console.log(series)
       var year = rec[0]['2018'];
-      var name = rec[0]['country_name']
+      console.log(year)
       ticker = ticker + series + ': ' + year + ' | ';
     });
-    panel.append('marquee').text(ticker);
+    panel.append('marquee').text('$' + ticker);
   }
   // buttons
 
@@ -137,9 +141,8 @@ d3.json(link).then(data => {
     d3.select('#one').transition().style
       var x_fdi = Object.keys(selected_country_json[0][0]).slice(0,19);
       var y_fdi = Object.values(selected_country_json[0][0]).slice(0,19);
- 
+
       var x_play = Object.keys(selected_country_json[indexSelector][0]).slice(0,19);
-      console.log(indexSelector)
       var y_play = Object.values(selected_country_json[indexSelector][0]).slice(0,19);
 
       var fdi_trace = {
@@ -164,11 +167,13 @@ d3.json(link).then(data => {
         connectgaps: true
       };
 
-      console.log(indexSelector)
       var data = [fdi_trace, play_trace]
       var layout = {
         title: `${selected_country_json[0][0]['country_name']} ${selected_country_json[0][0]['series']} vs. ${selected_country_json[indexSelector][0]['series']}`,
-        yaxis: {title: selected_country_json[0][0]['series']},
+        yaxis: {title: selected_country_json[0][0]['series'],
+                rangemode: 'tozero',
+                autorange: true 
+        },
         yaxis2: {
           title: selected_country_json[indexSelector][0]['series'],
           overlaying: 'y',
