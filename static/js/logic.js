@@ -66,9 +66,7 @@ d3.json(link).then(data => {
       console.log(rec)
       // var FDI = `${rec[0][0]['series']}${rec[0][0]}`
       var series = rec[0]['series'];
-      console.log(series)
       var year = rec[0]['2018'];
-      console.log(year)
       ticker = ticker + series + ': ' + year + ' | ';
     });
     panel.append('marquee').text('$' + ticker);

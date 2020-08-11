@@ -1,11 +1,12 @@
 import pandas as pd
 from flask import Flask, render_template, redirect, request, jsonify
 from sqlalchemy import create_engine, func
+from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
 
 app = Flask(__name__)
 
-local_engine = create_engine("postgresql://postgres:thelog89@localhost:5432/FDI_Test")
-cloud_engine = create_engine("postgresql://postgres:thelog89@ssa-ckh.c7biawpsnxhf.us-east-2.rds.amazonaws.com:5432/ssa-ckh")
+# cloud_engine = create_engine("postgresql://postgres:thelog89@ssa-ckh.c7biawpsnxhf.us-east-2.rds.amazonaws.com:5432/ssa-ckh")
+cloud_engine = create_engine(f"postgresql://{remote_db_user}:{remote_db_pwd}@{remote_db_endpoint}:{remote_db_port}/{remote_db_name}")
 
 
 #Map/DashBoard
