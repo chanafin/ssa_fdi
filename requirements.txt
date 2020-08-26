@@ -27,3 +27,8 @@ traitlets==4.3.2
 wcwidth==0.1.7
 Werkzeug==0.12.2
 pymysql==0.9.3
+dnspython==1.16.0
+requests==2.22.0
+
+
+
