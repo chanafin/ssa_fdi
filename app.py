@@ -1,11 +1,23 @@
 import pandas as pd
+import os
 from flask import Flask, render_template, redirect, request, jsonify
 from sqlalchemy import create_engine, func
-from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
+
+is_heroku = False
+if 'IS_HEROKU' in os.environ:
+    is_heroku = True
+if is_heroku == False:
+    from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
+else:
+    remote_db_endpoint = os.environ.get('remote_db_endpoint')
+    remote_db_port = os.environ.get('remote_db_port')
+    remote_db_user = os.environ.get('remote_db_user')
+    remote_db_pwd = os.environ.get('remote_db_pwd')
+    remote_db_name = os.environ.get('remote_db_name')
+
 
 app = Flask(__name__)
 
-# cloud_engine = create_engine("postgresql://postgres:thelog89@ssa-ckh.c7biawpsnxhf.us-east-2.rds.amazonaws.com:5432/ssa-ckh")
 cloud_engine = create_engine(f"postgresql://{remote_db_user}:{remote_db_pwd}@{remote_db_endpoint}:{remote_db_port}/{remote_db_name}")
 
 
