@@ -47,15 +47,7 @@ var mapStyle = {
 d3.json(link).then(data => {
 
   //dropdown
-  function builddropdown(){
-    var not_ssa = ['Morocco', 'Egypt', 'Libya', 'Tunisia', 'Algeria', 'Somalia', 'Western Sahara', 'Djibouti', 'La Reunion']
-    data.features.forEach(c => { if (not_ssa.indexOf(c.properties.name) === -1) {
-      var country_name = c.properties.name
-      var ddmenu = d3.select('#selDataset')
-      ddmenu.append('option').text(country_name)
-    }
-    });
-  };
+
   //snap shot
   function buildsnapshot(selected_country_json) {
     console.log(selected_country_json)

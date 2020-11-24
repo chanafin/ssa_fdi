@@ -48,14 +48,18 @@
 
   
     </div>
+    <div id= "select">
+      <h5>Country Name:</h5>
+              <select id="selDataset" onchange = "optionChanged(this.value)"></select>
+    </div>
 
     
     
       <div id= "dashboard" class= "col-lg-6 container-fluid">
-        <div id= "select">
+        <!-- <div id= "select">
         <h5>Country Name:</h5>
                 <select id="selDataset" onchange = "optionChanged(this.value)"></select>
-      </div>
+      </div> -->
         <div class='buttons'>
           <button id="gdp-btn" type="button" class="btn btn-success" >GDP</button>
           <button id="gdp_c-btn" type="button" class="btn btn-success" >GDP/Capita</button>
